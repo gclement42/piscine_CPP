@@ -5,7 +5,7 @@ NAME					= sed
 BUILD_DIR				= build/
 
 HEADER_DIR				= header/
-HEADER_FILES			= 
+HEADER_FILES			= sed.hpp
 	
 DIR						=	src/
 SRC						=	main.cpp 
