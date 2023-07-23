@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 15:58:00 by gclement          #+#    #+#             */
-/*   Updated: 2023/07/19 16:07:18 by gclement         ###   ########.fr       */
+/*   Updated: 2023/07/23 12:51:32 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,25 +40,45 @@ std::string replace(std::string entry, std::string s1, std::string s2)
 		pos = entry.find(s1, i);
 		if (i == 0 && pos == std::string::npos)
 			return (entry);
-		result += entry.substr(i, pos);
 		if (pos != std::string::npos)
 		{
+			result += entry.substr(i, pos - i);
 			result += s2;
 			i = pos + s1.size();
-			//std::cout << result << std::endl;
 		}
 		else
+		{
+			result += entry.substr(i, entry.size());
 			i = entry.size();
+		}
 	}
 	return (result);
+}
+
+void createExitFilesAndWrite(std::string content, std::string filename)
+{
+	std::ofstream exitFile(filename + ".replace");
+	
+	if (!exitFile.is_open())
+	{
+		std::cout << "Error: can't open file" << std::endl;
+		return ;
+	}
+	exitFile << content << std::endl;
 }
 
 int main(int argc, char **argv)
 {
 	std::ifstream entryFile;
 	std::string content;
+	std::string path;
 	
-	(void) argc;
+	if (argc != 4)
+	{
+		std::cout << "Error: wrong number of arguments" << std::endl;
+		return (1);
+	}
+	path = argv[1];
 	entryFile.open(argv[1], std::fstream::in);
 	if (!entryFile.is_open())
 	{
@@ -67,6 +87,6 @@ int main(int argc, char **argv)
 	}
 	content = getEntry(entryFile);
 	content = replace(content, argv[2], argv[3]);
-	std::cout << content << std::endl;
+	createExitFilesAndWrite(content, path[path.find_last_of('/')]);
 	return (0);
 }
