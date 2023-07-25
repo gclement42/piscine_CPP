@@ -6,15 +6,13 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 15:58:00 by gclement          #+#    #+#             */
-/*   Updated: 2023/07/23 12:51:32 by gclement         ###   ########.fr       */
+/*   Updated: 2023/07/25 09:22:25 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <fstream>
 
-/* s1 = copains, s2 = putes*/
-/* Salut les copains comment ca va ? Moi bien*/
 std::string getEntry(std::ifstream &entryFile)
 {
 	std::string entry;
@@ -55,10 +53,15 @@ std::string replace(std::string entry, std::string s1, std::string s2)
 	return (result);
 }
 
-void createExitFilesAndWrite(std::string content, std::string filename)
+void writeInExitFile(std::string content, std::string path)
 {
-	std::ofstream exitFile(filename + ".replace");
-	
+	size_t	pos;
+
+	pos = path.find_last_of('/');
+	if (pos != std::string::npos)
+		path = path.substr(pos + 1, path.size());
+	path += ".replace";
+	std::ofstream exitFile(path.data());
 	if (!exitFile.is_open())
 	{
 		std::cout << "Error: can't open file" << std::endl;
@@ -87,6 +90,6 @@ int main(int argc, char **argv)
 	}
 	content = getEntry(entryFile);
 	content = replace(content, argv[2], argv[3]);
-	createExitFilesAndWrite(content, path[path.find_last_of('/')]);
+	writeInExitFile(content, path);
 	return (0);
 }
