@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:23:42 by gclement          #+#    #+#             */
-/*   Updated: 2023/07/27 14:47:33 by gclement         ###   ########.fr       */
+/*   Updated: 2023/07/29 13:32:35 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ Fixed::Fixed(const Fixed &src)
 Fixed::Fixed(const int value)
 {
 	std::cout << "Int constructor called" << std::endl;
+	_value = value;
+}
+
+Fixed::Fixed(const float value)
+{
+	std::cout << "Float constructor called" << std::endl;
 }
 
 Fixed::~Fixed()
@@ -41,3 +47,18 @@ Fixed &Fixed::operator=(Fixed const &src)
 	return (*this);
 }
 
+std::ostream &operator<<(std::ostream &out, Fixed const &src)
+{
+	out << src.getRawBits();
+	return (out);
+}
+
+int Fixed::getRawBits(void) const
+{
+	return (this->_value);
+}
+
+void Fixed::setRawBits(int const raw)
+{
+	this->_value = raw;
+}
