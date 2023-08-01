@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanA.cpp                                         :+:      :+:    :+:   */
+/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/19 15:12:24 by gclement          #+#    #+#             */
-/*   Updated: 2023/08/01 13:00:38 by gclement         ###   ########.fr       */
+/*   Created: 2023/08/01 13:26:03 by gclement          #+#    #+#             */
+/*   Updated: 2023/08/01 13:45:25 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanA.hpp"
+#ifndef CLAPTRAP_HPP
+#define CLAPTRAP_HPP
 
-HumanA::HumanA(std::string name, Weapon weapon): _name(name), _weapon(weapon)
+#include <iostream>
+
+class ClapTrap
 {
-	return ;
-}
+	private:
+		std::string _name;
+		int 		_hitPoints;
+		int			_energyPoints;
+		int			_attackDamage;
+	public:
+		ClapTrap(std::string name);
+		~ClapTrap();
+		void attack(const std::string &target);
+		void takeDamage(unsigned int amount);
+		void beRepaired(unsigned int amount);
+};
 
-void HumanA::attack(void)
-{
-	std::cout << this->_name << " attacks with their " << this->_weapon.getType() << std::endl;
-}
-
-
+#endif

@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanA.cpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/19 15:12:24 by gclement          #+#    #+#             */
-/*   Updated: 2023/08/01 13:00:38 by gclement         ###   ########.fr       */
+/*   Created: 2023/08/01 14:58:58 by gclement          #+#    #+#             */
+/*   Updated: 2023/08/01 14:59:45 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanA.hpp"
+#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
-HumanA::HumanA(std::string name, Weapon weapon): _name(name), _weapon(weapon)
+int main(void)
 {
-	return ;
+	ClapTrap clap("Clap");
+	ScavTrap scav("Scav");
+
+	scav.guardGate();
+	clap.attack("Trap");
 }
-
-void HumanA::attack(void)
-{
-	std::cout << this->_name << " attacks with their " << this->_weapon.getType() << std::endl;
-}
-
-

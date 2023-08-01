@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanA.cpp                                         :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/19 15:12:24 by gclement          #+#    #+#             */
-/*   Updated: 2023/08/01 13:00:38 by gclement         ###   ########.fr       */
+/*   Created: 2023/08/01 15:07:52 by gclement          #+#    #+#             */
+/*   Updated: 2023/08/01 15:13:54 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanA.hpp"
+#ifndef FRAGTRAP_HPP
+#define FRAGTRAP_HPP
 
-HumanA::HumanA(std::string name, Weapon weapon): _name(name), _weapon(weapon)
+#include "ClapTrap.hpp"
+
+class FragTrap: protected ClapTrap
 {
-	return ;
-}
+	public:
+		FragTrap(std::string name);
+		~FragTrap();
+		void highFivesGuys(void);
+};
 
-void HumanA::attack(void)
-{
-	std::cout << this->_name << " attacks with their " << this->_weapon.getType() << std::endl;
-}
-
-
+#endif

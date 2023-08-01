@@ -6,9 +6,12 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 11:50:59 by gclement          #+#    #+#             */
-/*   Updated: 2023/07/29 10:23:20 by gclement         ###   ########.fr       */
+/*   Updated: 2023/08/01 13:01:30 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef FIXED_HPP
+#define FIXED_HPP
 
 #include <iostream>
 
@@ -25,3 +28,5 @@ class Fixed
 		int getRawBits(void) const;
 		void setRawBits(int const raw);
 };
+
+#endif
