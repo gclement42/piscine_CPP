@@ -1,14 +1,14 @@
 .PHONY:					all $(NAME) clear mkbuild clear clean fclean re sanitize
 
-NAME					= ClapTrap
+NAME					= FrapTrap
 
 BUILD_DIR				= build/
 
 HEADER_DIR				= header/
-HEADER_FILES			= ClapTrap.hpp
+HEADER_FILES			= ClapTrap.hpp ScavTrap.hpp FragTrap.hpp
 	
 DIR						=	src/
-SRC						=	main.cpp ClapTrap.cpp
+SRC						=	main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
 
 OBJECTS					= $(SRC:%.cpp=$(BUILD_DIR)%.o)
 

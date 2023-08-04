@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 14:58:58 by gclement          #+#    #+#             */
-/*   Updated: 2023/08/01 14:59:45 by gclement         ###   ########.fr       */
+/*   Updated: 2023/08/03 15:48:23 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,5 @@ int main(void)
 
 	scav.guardGate();
 	clap.attack("Trap");
+	scav.attack("clap");
 }

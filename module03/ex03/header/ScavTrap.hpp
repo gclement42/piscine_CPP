@@ -1,0 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/01 13:49:32 by gclement          #+#    #+#             */
+/*   Updated: 2023/08/04 12:25:17 by gclement         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef SCAVTRAP_HPP
+#define SCAVTRAP_HPP
+
+#include "ClapTrap.hpp"
+
+class ScavTrap: virtual public ClapTrap
+{
+	public:
+		ScavTrap(std::string name);
+		ScavTrap(const ScavTrap &src);
+		ScavTrap &operator=(const ScavTrap &src);
+		~ScavTrap();
+		void guardGate(void);
+};
+
+#endif
