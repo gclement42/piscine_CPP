@@ -4,9 +4,10 @@ int	main(int argc, char *argv[])
 {
 	int		i;
 	char 	c;
-	char	*argUpper;
 
 	i = 1;
+	if (argc == 1)
+		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
 	while (i < argc)
 	{
 		for (int x = 0; argv[i][x]; x++)
@@ -17,7 +18,5 @@ int	main(int argc, char *argv[])
 		std::cout << " ";
 		i++;
 	}
-	if (argc == 1)
-		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
 	std::cout << std::endl;
 }

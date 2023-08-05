@@ -1,14 +1,14 @@
 .PHONY:					all $(NAME) clear mkbuild clear clean fclean re sanitize
 
-NAME					= Polymorphism
+NAME					= Brain
 
 BUILD_DIR				= build/
 
 HEADER_DIR				= header/
-HEADER_FILES			= main.hpp Animal.hpp Dog.hpp Cat.hpp WrongAnimal.hpp WrongCat.hpp
+HEADER_FILES			= main.hpp Animal.hpp Dog.hpp Cat.hpp WrongAnimal.hpp WrongCat.hpp Brain.hpp
 	
 DIR						=	src/
-SRC						=	main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp
+SRC						=	main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
 
 OBJECTS					= $(SRC:%.cpp=$(BUILD_DIR)%.o)
 

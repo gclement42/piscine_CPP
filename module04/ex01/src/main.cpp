@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/04 13:59:00 by gclement          #+#    #+#             */
-/*   Updated: 2023/08/05 10:00:30 by gclement         ###   ########.fr       */
+/*   Created: 2023/08/04 12:55:19 by gclement          #+#    #+#             */
+/*   Updated: 2023/08/05 11:09:59 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONGANIMAL_HPP
-#define WRONGANIMAL_HPP
+#include "main.hpp"
 
-#include <iostream>
-
-class WrongAnimal
+int main(void)
 {
-	protected :
-		std::string _type;
-	public:
-		WrongAnimal(void);
-		WrongAnimal(const WrongAnimal &src);
-		WrongAnimal &operator=(const WrongAnimal &src);
-		void makeSound(void) const;
-		std::string getType(void) const;
-		~WrongAnimal(void);
-};
+	Animal *animal[100];
+	Dog 	dog;
+	Dog 	doug;
 
-#endif
-
+	for (int i = 0; i < 100; i++)
+	{
+		if (i % 2 == 0)
+			animal[i] = new Dog();
+		else
+			animal[i] = new Cat();
+	}
+	for (int i = 0; i < 100; i++)
+	{
+		animal[i]->makeSound();
+	}
+	dog = doug;
+	for (int i = 0; i < 100; i++)
+	{
+		delete animal[i];
+	}
+}
