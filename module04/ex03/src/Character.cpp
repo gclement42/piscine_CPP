@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 08:31:04 by gclement          #+#    #+#             */
-/*   Updated: 2023/08/15 13:58:16 by gclement         ###   ########.fr       */
+/*   Updated: 2023/08/16 13:33:08 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ Character::Character(const Character &src)
 	*this = src;
 }
 
-Character &Character::operator(const Character &src)
+Character &Character::operator=(const Character &src)
 {
 	for (int i = 0; i < 4; i++)
 	{
@@ -31,9 +31,17 @@ Character &Character::operator(const Character &src)
 		this->_inventory[i] = src._inventory[i];
 	}
 	this->_name = src._name;
+	return (*this);
 }
 
-std::string const & Character::getName() const
+Character::~Character(void)
+{
+	for (int i = 0; i < 4; i++)
+		delete (_inventory[i]);
+	std::cout << "Character " << this->_name << " is dead" << std::endl;
+}
+
+std::string const &Character::getName(void) const
 {
 	return (this->_name);
 }
@@ -53,17 +61,17 @@ void Character::equip(AMateria* m)
 
 void Character::unequip(int idx)
 {
-	if (idx > 3 || !this->_inventory[i])
+	if (idx > 3 || !this->_inventory[idx])
 		std::cout << "This materia doesn't exist" << std::endl;
-	
+	this->_inventory[idx] = NULL;
 }
 
 void Character::use(int idx, ICharacter &target)
 {
-	if (idx > 3 || !this->_inventory[i])
+	if (this->_inventory[idx] == NULL)
+	{
 		std::cout << "This materia doesn't exist" << std::endl;
-	else if (this->_inventory[i].getType() == "ice")
-		std::cout <<  "* shoots an ice bolt at " << this.target.getName() << " *" << std::endl;	
-	else if (this->_inventory[i].getType() == "cure")
-		std::cout <<  "* heals " << this.target.getName() << "'s wounds *" << std::endl;
+		return ;
+	}
+	this->_inventory[idx]->use(target);
 }

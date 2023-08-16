@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 08:23:59 by gclement          #+#    #+#             */
-/*   Updated: 2023/08/14 08:52:39 by gclement         ###   ########.fr       */
+/*   Updated: 2023/08/16 11:04:19 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 #define MAIN_HPP
 
 #include <iostream>
-#include "Amateria.hpp"
+#include "AMateria.hpp"
+#include "Character.hpp"
 #include "Ice.hpp"
 #include "Cure.hpp"
-#include "Character.hpp"
+#include "MateriaSource.hpp"
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 12:34:25 by gclement          #+#    #+#             */
-/*   Updated: 2023/08/05 10:44:21 by gclement         ###   ########.fr       */
+/*   Updated: 2023/08/15 08:52:23 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class Animal
 		Animal(void);
 		Animal(const Animal &src);
 		Animal &operator=(const Animal &src);
-		virtual void makeSound(void) const;
+		virtual void makeSound(void) const = 0;
 		std::string getType(void) const;
 		virtual ~Animal(void);
 };

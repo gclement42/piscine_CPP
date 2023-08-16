@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 08:35:35 by gclement          #+#    #+#             */
-/*   Updated: 2023/08/15 09:15:11 by gclement         ###   ########.fr       */
+/*   Updated: 2023/08/16 14:12:06 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int main()
 {
+	Ice ice;
+	Cure cure;
 	IMateriaSource* src = new MateriaSource();
 	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());

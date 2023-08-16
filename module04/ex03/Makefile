@@ -1,14 +1,14 @@
 .PHONY:					all $(NAME) clear mkbuild clear clean fclean re sanitize
 
-NAME					= Brain
+NAME					= Materia
 
 BUILD_DIR				= build/
 
 HEADER_DIR				= header/
-HEADER_FILES			= main.hpp Materia.hpp Ice.hpp Cure.hpp Character.hpp
+HEADER_FILES			= main.hpp MateriaSource.hpp AMateria.hpp Ice.hpp Cure.hpp Character.hpp
 	
 DIR						=	src/
-SRC						=	main.cpp Materia.cpp Ice.cpp Cure.cpp Character.cpp
+SRC						=	main.cpp MateriaSource.cpp AMateria.cpp Ice.cpp Cure.cpp Character.cpp
 
 OBJECTS					= $(SRC:%.cpp=$(BUILD_DIR)%.o)
 
@@ -34,6 +34,8 @@ init:
 						@mkdir -p $(DIR)
 						@touch $(DIR)main.cpp
 						@touch $(HEADER_DIR)main.hpp
+						@touch .gitignore
+						@echo "build/" >> .gitignore
 
 clear:
 						$(CLEAR)

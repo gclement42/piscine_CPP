@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 08:30:12 by gclement          #+#    #+#             */
-/*   Updated: 2023/08/14 09:34:40 by gclement         ###   ########.fr       */
+/*   Updated: 2023/08/16 13:30:35 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ class Cure: public AMateria
 {
 	public :
 		Cure(void);
-		Cure(const Cure & src);
+		Cure(const Cure &src);
 		~Cure(void);
 		Cure &operator=(const Cure &src);
 		Cure *clone() const;
