@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:18:25 by gclement          #+#    #+#             */
-/*   Updated: 2023/07/19 12:28:35 by gclement         ###   ########.fr       */
+/*   Updated: 2023/08/17 09:32:51 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "contact.hpp"
 #include <limits>
 
+
 PhoneBook::PhoneBook(void)
 {
 	this->nbContact = 0;
@@ -22,24 +23,14 @@ PhoneBook::PhoneBook(void)
 
 PhoneBook::~PhoneBook(void)
 {
-	std::cout << "destroy phoneBook\n";	
+	return ;
 }
 
 void PhoneBook::add(void)
 {
 	if (this->nbContact > 7)
 		this->nbContact = 7;
-	std::cout << "-------- CREATE NEW CONTACT --------\n";
-	std::cout << "first name : ";
-	std::cin >> this->contact[this->nbContact].firstName;
-	std::cout << "last name : ";
-	std::cin >> this->contact[this->nbContact].lastName;
-	std::cout << "nickname : ";
-	std::cin >> this->contact[this->nbContact].nickname;
-	std::cout << "phonenumber : ";
-	std::cin >> this->contact[this->nbContact].phoneNumber;
-	std::cout << "darkestSecret : ";
-	std::cin >> this->contact[this->nbContact].darkestSecret;
+	this->contact[this->nbContact].setContact();
 	this->nbContact++;
 }
 
@@ -52,9 +43,9 @@ void PhoneBook::search(void)
 	while (i < this->nbContact)
 	{
 		std::cout << std::right << std::setw(10) << i + 1 << " | ";
-		check_is_trunc(this->contact[i].firstName);
-		check_is_trunc(this->contact[i].lastName);
-		check_is_trunc(this->contact[i].nickname);
+		check_is_trunc(this->contact[i].GetPublicInfo("firstName"));
+		check_is_trunc(this->contact[i].GetPublicInfo("lastName"));
+		check_is_trunc(this->contact[i].GetPublicInfo("nickName"));
 		std::cout << std::endl;
 		i++;
 	}
@@ -63,10 +54,12 @@ void PhoneBook::search(void)
 	while (!std::cin)
 	{
 		std::cin.clear();
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		std::cout << "Choose contact displayed" << std::endl;
-		std::cin >> answer;
+		std::cin.ignore();
+		std::cout << "Wrong input\n" << std::endl;
+		return ;
 	}
-	if (answer <= 8 && answer != 0 && answer < this->nbContact)
-		this->contact[i - 1].display();
+	if (answer <= 8 && answer != 0 && answer <= this->nbContact)
+		this->contact[answer - 1].display();
+	else
+		std::cout << "This contact doesn't exist\n" << std::endl;
 }

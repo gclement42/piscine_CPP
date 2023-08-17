@@ -1,6 +1,6 @@
 .PHONY:					all $(NAME) clear mkbuild clear clean fclean re sanitize
 
-NAME					= Brain
+NAME					= Abstract
 
 BUILD_DIR				= build/
 

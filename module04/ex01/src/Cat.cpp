@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 12:42:58 by gclement          #+#    #+#             */
-/*   Updated: 2023/08/05 11:09:41 by gclement         ###   ########.fr       */
+/*   Updated: 2023/08/17 09:45:19 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,17 @@ Cat::Cat()
 Cat::Cat(const Cat &src)
 {
 	std::cout << "Cat copy constructor called" << std::endl;
+	this->_brain = NULL;
 	*this = src;
 }
 
 Cat &Cat::operator=(const Cat &src)
 {
+	if (this == &src)
+		return (*this);
 	this->_type = src._type;
-	this->_brain->operator=(*src._brain);
+	delete this->_brain;
+	this->_brain = new Brain(*src._brain);
 	return (*this);
 }
 

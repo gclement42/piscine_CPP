@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:18:28 by gclement          #+#    #+#             */
-/*   Updated: 2023/07/11 16:00:09 by gclement         ###   ########.fr       */
+/*   Updated: 2023/08/17 09:28:05 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "phoneBook.h"
 #include <iostream>
 #include <limits>
+#include <stdlib.h>
 
 void check_is_trunc(std::string str)
 {
@@ -36,6 +37,7 @@ int summary(PhoneBook *phoneBook)
 		{
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     		std::cin.clear();
+			exit(0);
 		}
 		if (answer == "ADD")
 			phoneBook->add();
