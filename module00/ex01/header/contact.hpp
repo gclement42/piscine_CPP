@@ -6,14 +6,13 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:18:37 by gclement          #+#    #+#             */
-/*   Updated: 2023/08/17 08:30:22 by gclement         ###   ########.fr       */
+/*   Updated: 2023/08/17 10:46:23 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONTACT_HPP
 #define CONTACT_HPP
 
-#include <iostream>
 #include "phoneBook.h"
 
 class Contact

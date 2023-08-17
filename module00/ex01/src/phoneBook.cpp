@@ -6,15 +6,11 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:18:25 by gclement          #+#    #+#             */
-/*   Updated: 2023/08/17 09:32:51 by gclement         ###   ########.fr       */
+/*   Updated: 2023/08/17 10:47:03 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "phoneBook.h"
-#include "phoneBook.hpp"
-#include "contact.hpp"
-#include <limits>
-
 
 PhoneBook::PhoneBook(void)
 {

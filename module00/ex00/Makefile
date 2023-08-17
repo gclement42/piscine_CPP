@@ -1,6 +1,6 @@
 .PHONY:					all $(NAME) clear mkbuild clear clean fclean re sanitize
 
-NAME					= phoneBook
+NAME					= megaphone
 
 BUILD_DIR				= build/
 
