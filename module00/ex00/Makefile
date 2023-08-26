@@ -4,7 +4,7 @@ NAME					= megaphone
 
 BUILD_DIR				= build/
 
-SRC						=	main.cpp 
+SRC						=	megaphone.cpp 
 
 OBJECTS					= $(SRC:%.cpp=$(BUILD_DIR)%.o)
 
@@ -39,6 +39,7 @@ clean:
 
 fclean:					clean
 						@${RM} ${NAME}
+						@${RM} ${BUILD_DIR}
 
 re:						fclean all
 						$(MAKE) all

@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 15:12:26 by gclement          #+#    #+#             */
-/*   Updated: 2023/07/19 15:48:23 by gclement         ###   ########.fr       */
+/*   Updated: 2023/08/20 10:16:00 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 
 int main(void)
 {
-	Weapon AK47 = Weapon("AK47");
-	HumanA bob("Bob", AK47);
-	bob.attack();
+	Weapon club = Weapon("crude spiked club");
 	HumanB jim("Jim");
-	// jim.setWeapon(AK47);
+	jim.setWeapon(club);
+	jim.attack();
+	club.setType("some other type of club");
 	jim.attack();
 	return (0);
 }

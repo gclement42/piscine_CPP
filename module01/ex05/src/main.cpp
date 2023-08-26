@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 09:28:05 by gclement          #+#    #+#             */
-/*   Updated: 2023/07/25 10:29:30 by gclement         ###   ########.fr       */
+/*   Updated: 2023/08/20 13:09:03 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,4 +18,7 @@ int main(void)
 	Harl harl;
 	
 	harl.complain("DEBUG");
+	harl.complain("INFO");
+	harl.complain("WARNING");
+	harl.complain("INFO");
 }

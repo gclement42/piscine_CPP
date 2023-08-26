@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 15:12:32 by gclement          #+#    #+#             */
-/*   Updated: 2023/07/19 15:46:04 by gclement         ###   ########.fr       */
+/*   Updated: 2023/08/20 10:41:03 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class HumanB
 	public:
 		HumanB(std::string name);
 		void attack(void);
-		void setWeapon(Weapon weapon);
+		void setWeapon(Weapon &weapon);
 };
 
 # endif

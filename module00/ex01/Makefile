@@ -43,6 +43,7 @@ clean:
 
 fclean:					clean
 						@${RM} ${NAME}
+						@${RM} ${BUILD_DIR}
 
 re:						fclean all
 						$(MAKE) all
