@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 08:31:04 by gclement          #+#    #+#             */
-/*   Updated: 2023/08/16 13:33:08 by gclement         ###   ########.fr       */
+/*   Updated: 2023/08/29 14:00:13 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ Character::Character(std::string name): _name(name)
 {
 	for (int i = 0; i < 4; i++)
 		_inventory[i] = NULL;
+	_garbage = NULL;
 }
 
 Character::Character(const Character &src)
@@ -37,7 +38,8 @@ Character &Character::operator=(const Character &src)
 Character::~Character(void)
 {
 	for (int i = 0; i < 4; i++)
-		delete (_inventory[i]);
+		delete _inventory[i];
+	delete _garbage;
 	std::cout << "Character " << this->_name << " is dead" << std::endl;
 }
 
@@ -59,10 +61,22 @@ void Character::equip(AMateria* m)
 		this->_inventory[i] = m;
 }
 
+void Character::emptyGarbage(void)
+{
+	delete _garbage;
+}
+
 void Character::unequip(int idx)
 {
-	if (idx > 3 || !this->_inventory[idx])
-		std::cout << "This materia doesn't exist" << std::endl;
+	if (!this->_inventory[idx])
+	{
+		std::cout << "Unequip : This materia doesn't exist" << std::endl;
+		return ;
+	}
+	std::cout << "Unequip : " << this->_inventory[idx]->getType() << std::endl;
+	if (_garbage == NULL)
+		this->emptyGarbage();
+	_garbage = this->_inventory[idx];
 	this->_inventory[idx] = NULL;
 }
 

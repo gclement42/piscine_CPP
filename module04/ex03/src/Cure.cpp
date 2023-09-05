@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 08:30:54 by gclement          #+#    #+#             */
-/*   Updated: 2023/08/16 13:52:58 by gclement         ###   ########.fr       */
+/*   Updated: 2023/08/29 10:52:39 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ Cure::~Cure(void)
 
 Cure &Cure::operator=(const Cure &src)
 {
-	this->_type = src._type;
+	if (this == &src)
+		this->_type = src._type;
 	return (*this);
 }
 
