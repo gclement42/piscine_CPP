@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Data.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/20 08:15:11 by gclement          #+#    #+#             */
-/*   Updated: 2023/09/20 11:08:51 by gclement         ###   ########.fr       */
+/*   Created: 2023/09/20 08:16:27 by gclement          #+#    #+#             */
+/*   Updated: 2023/09/20 09:02:48 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScalarConverter.hpp"
+#ifndef DATA_H
+# define DATA_H
 
-int main(int argc, char **argv)
+typedef struct s_Data
 {
-	if (argc != 2)
-	{
-		std::cout << "Error: wrong number of arguments" << std::endl;
-		return (1);
-	}
-	std::string str(argv[1]);
-	ScalarConverter::convert(str);
-	return (0);
-}
+	int a;
+	int b;
+}	Data;
+
+#endif

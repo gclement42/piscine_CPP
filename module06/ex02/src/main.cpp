@@ -5,21 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/20 08:15:11 by gclement          #+#    #+#             */
-/*   Updated: 2023/09/20 11:08:51 by gclement         ###   ########.fr       */
+/*   Created: 2023/09/20 09:09:40 by gclement          #+#    #+#             */
+/*   Updated: 2023/09/20 10:57:01 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScalarConverter.hpp"
+#include "Base.hpp"
 
-int main(int argc, char **argv)
+Base *generate(void);
+void identify(Base* p);
+void identify(Base& p);
+
+int main()
 {
-	if (argc != 2)
-	{
-		std::cout << "Error: wrong number of arguments" << std::endl;
-		return (1);
-	}
-	std::string str(argv[1]);
-	ScalarConverter::convert(str);
-	return (0);
+	Base *base;
+
+	base = generate();
+	identify(base);
+	identify(*base);
 }

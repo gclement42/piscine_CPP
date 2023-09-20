@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Base.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/20 08:15:11 by gclement          #+#    #+#             */
-/*   Updated: 2023/09/20 11:08:51 by gclement         ###   ########.fr       */
+/*   Created: 2023/09/20 09:11:08 by gclement          #+#    #+#             */
+/*   Updated: 2023/09/20 10:40:33 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScalarConverter.hpp"
+#ifndef BASE_HPP
+# define BASE_HPP
 
-int main(int argc, char **argv)
+#include <iostream>
+
+class Base
 {
-	if (argc != 2)
-	{
-		std::cout << "Error: wrong number of arguments" << std::endl;
-		return (1);
-	}
-	std::string str(argv[1]);
-	ScalarConverter::convert(str);
-	return (0);
-}
+	public :
+		virtual ~Base(){};
+};
+
+class A: public Base {};
+class B: public Base {};
+class C: public Base {};
+
+Base *generate(void);
+void identify(Base *p);
+
+#endif
