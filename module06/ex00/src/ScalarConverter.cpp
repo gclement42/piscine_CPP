@@ -103,6 +103,11 @@ void ScalarConverter::convertToFloat(const double nb)
 
 	res = static_cast<float>(nb);
 	std::cout << "float: ";
+	if (res >= FLT_MAX || res <= FLT_MIN)
+	{
+		std::cout << "impossible" << std::endl;
+		return ;
+	}
 	if (nb == static_cast<int>(nb))
 		std::cout << res << ".0f" << std::endl;
 	else
@@ -116,6 +121,11 @@ void ScalarConverter::convertToDouble(const double nb)
 
 	res = static_cast<double>(nb);
 	std::cout << "double: ";
+	if (res >= DBL_MAX || res <= DBL_MIN)
+	{
+		std::cout << "impossible" << std::endl;
+		return ;
+	}
 	if (nb == static_cast<int>(nb))
 		std::cout << res << ".0" << std::endl;
 	else
