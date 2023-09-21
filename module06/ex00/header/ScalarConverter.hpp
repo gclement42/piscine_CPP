@@ -16,10 +16,12 @@
 class ScalarConverter
 {
 	private:
-		static void convertToInt(const std::string &str);
-		static void convertToChar(const std::string &str);
-		static void convertToDouble(const std::string &str);
-		static void convertToFloat(const std::string &str);
+		static void ifImpossible(void);
+		static void convertToInt(const double nb);
+		static void convertToChar(const char c);
+		static void convertToChar(const double nb);
+		static void convertToDouble(const double nb);
+		static void convertToFloat(const double nb);
 	public:
 		ScalarConverter();
 		ScalarConverter(const ScalarConverter &src);
