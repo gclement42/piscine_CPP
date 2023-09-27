@@ -32,80 +32,110 @@ ScalarConverter::ScalarConverter(const ScalarConverter &src)
 
 void ScalarConverter::convert(const std::string &str)
 {
-	ScalarConverter::convertToChar(str);
-	ScalarConverter::convertToInt(str);
-	ScalarConverter::convertToFloat(str);
-	ScalarConverter::convertToDouble(str);
-}
-
-void ScalarConverter::convertToInt(const std::string &str)
-{
-	int result;
-
-	std::cout << "int: ";
-	result = std::atoi(str.c_str());
-	if ((result == 0 && str[1]) 
-		|| str.find_first_not_of("-+.f0123456789") != std::string::npos || INT_MAX < result || INT_MIN > result)
-	{
-		std::cout << "impossible" << std::endl;
-		return ;
-	}
-	if (result == 0 && str[0] != '0')
-		result = static_cast<int>(str[0]);
-	std::cout << result << std::endl;
-}
-
-void ScalarConverter::convertToChar(const std::string &str)
-{
-	char		c;
-	double		num;
+	double num;
+	char c;
 
 	num = std::atof(str.c_str());
-	std::cout << "char: ";
-	if (num == static_cast<int>(num) 
-		&& (str.find_first_not_of("+.f0123456789") == std::string::npos))
+	if (num != 0)
 	{
-		c = static_cast<char>(num);
-		if (c >= '\0' && c <= ' ' && c != 127)
+		if (str.find_first_not_of("-+.f0123456789") != std::string::npos 
+			&& str != "nan" && str != "nanf" && str != "inf" 
+			&& str != "inff" && str != "-inf" && str != "-inff")
+			return (ScalarConverter::ifImpossible());
+		ScalarConverter::convertToChar(num);
+		ScalarConverter::convertToInt(num);
+		ScalarConverter::convertToFloat(num);
+		ScalarConverter::convertToDouble(num);
+	}
+	else
+	{
+		if (str.length() != 1)
+			return (ScalarConverter::ifImpossible());
+		c = static_cast<char>(str[0]);
+		ScalarConverter::convertToChar(c);
+		ScalarConverter::convertToInt(static_cast<double>(str[0]));
+		ScalarConverter::convertToFloat(static_cast<double>(str[0]));
+		ScalarConverter::convertToDouble(static_cast<double>(str[0]));
+	}
+}
+
+void ScalarConverter::convertToInt(const double num)
+{
+	int res;
+
+	res = static_cast<int>(num);
+	std::cout << "int: ";
+	if (INT_MAX <= res || INT_MIN >= res)
+		std::cout << "impossible" << std::endl;
+	else
+		std::cout << res << std::endl;
+}
+
+void ScalarConverter::convertToChar(const char c)
+{
+	std::cout << "char: ";
+	if ((c >= '\0' && c < ' ') || c == 127)
+		std::cout << "Non displayable" << std::endl;
+	else
+		std::cout << "'" << c << "'" << std::endl;
+}
+
+void ScalarConverter::convertToChar(const double nb)
+{
+	char c;
+
+	std::cout << "char: ";
+	if (nb == static_cast<int>(nb) && nb >= 0 && nb <= 127)
+	{
+		c = static_cast<char>(nb);
+		if ((c >= '\0' && c < ' ') || c == 127)
 			std::cout << "Non displayable" << std::endl;
 		else
-			std::cout << c << std::endl;
+			std::cout << "'" << c << "'" << std::endl;
 	}
 	else
 		std::cout << "impossible" << std::endl;
 }
 
-void ScalarConverter::convertToFloat(const std::string &str)
+void ScalarConverter::convertToFloat(const double nb)
 {
 	float res;
 
-	res = std::atof(str.c_str());
+	res = static_cast<float>(nb);
 	std::cout << "float: ";
-	if (str.find_first_not_of("-+.f0123456789") != std::string::npos || FLT_MAX < res)
+	if (res >= FLT_MAX || res <= FLT_MIN)
 	{
 		std::cout << "impossible" << std::endl;
 		return ;
 	}
-	std::cout << res;
-	if (res == static_cast<int>(res))
-		std::cout << ".0";
-	std::cout << "f"  << std::endl;
+	if (nb == static_cast<int>(nb))
+		std::cout << res << ".0f" << std::endl;
+	else
+		std::cout << res << "f" << std::endl;
 }
 
-void ScalarConverter::convertToDouble(const std::string &str)
+
+void ScalarConverter::convertToDouble(const double nb)
 {
 	double	res;
-	char	*ptr;
 
-	res = std::strtod(str.c_str(), &ptr);
+	res = static_cast<double>(nb);
 	std::cout << "double: ";
-	if (str.find_first_not_of("-+.f0123456789") != std::string::npos || DBL_MAX < res)
+	if (res >= DBL_MAX || res <= DBL_MIN)
 	{
 		std::cout << "impossible" << std::endl;
 		return ;
 	}
-	std::cout << res;
-	if (res == static_cast<int>(res))
-		std::cout << ".0";
-	std::cout << std::endl;
+	if (nb == static_cast<int>(nb))
+		std::cout << res << ".0" << std::endl;
+	else
+		std::cout << res << std::endl;
+}
+
+void ScalarConverter::ifImpossible(void)
+{
+	std::cout << "char: impossible" << std::endl;
+	std::cout << "int: impossible" << std::endl;
+	std::cout << "float: impossible" << std::endl;
+	std::cout << "double: impossible" << std::endl;
 }
