@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 08:15:14 by gclement          #+#    #+#             */
-/*   Updated: 2023/09/20 11:34:43 by gclement         ###   ########.fr       */
+/*   Updated: 2023/09/27 13:37:56 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <cstdlib>
 #include <limits.h>
 #include <float.h>
+#include <algorithm>
 
 ScalarConverter::ScalarConverter(){}
 
@@ -38,9 +39,12 @@ void ScalarConverter::convert(const std::string &str)
 	num = std::atof(str.c_str());
 	if (num != 0)
 	{
-		if (str.find_first_not_of("-+.f0123456789") != std::string::npos 
+		if ((std::count(str.begin(), str.end(), '.') > 1
+			|| std::count(str.begin(), str.end(), 'f') > 1
+			|| std::count(str.begin(), str.end(), '-') > 1)
+			||	(str.find_first_not_of("-+.f0123456789") != std::string::npos
 			&& str != "nan" && str != "nanf" && str != "inf" 
-			&& str != "inff" && str != "-inf" && str != "-inff")
+			&& str != "inff" && str != "-inf" && str != "-inff"))
 			return (ScalarConverter::ifImpossible());
 		ScalarConverter::convertToChar(num);
 		ScalarConverter::convertToInt(num);
@@ -103,7 +107,7 @@ void ScalarConverter::convertToFloat(const double nb)
 
 	res = static_cast<float>(nb);
 	std::cout << "float: ";
-	if (res >= FLT_MAX || res <= FLT_MIN)
+	if (res >= FLT_MAX || res <= -FLT_MAX)
 	{
 		std::cout << "impossible" << std::endl;
 		return ;
@@ -121,7 +125,7 @@ void ScalarConverter::convertToDouble(const double nb)
 
 	res = static_cast<double>(nb);
 	std::cout << "double: ";
-	if (res >= DBL_MAX || res <= DBL_MIN)
+	if (res >= DBL_MAX || res <= -DBL_MAX)
 	{
 		std::cout << "impossible" << std::endl;
 		return ;
