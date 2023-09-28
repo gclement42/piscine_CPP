@@ -13,17 +13,24 @@
 #ifndef BITCOINEXCHANGE_HPP
 # define BITCOINEXCHANGE_HPP
 
-#include <iostream>
+# include <iostream>
+# include <map> 
 
 class BitcoinExchange
 {
+	typedef typename std::multimap<std::string, float>::iterator multimapIterator;
 	public :
-		BitcoinExchange();
+		BitcoinExchange(std::string file);
 		~BitcoinExchange();
 		BitcoinExchange(const BitcoinExchange &src);
 		BitcoinExchange &operator=(const BitcoinExchange &src);
-	
-		
-}
+		void displayExchangeRate(void);
+		void createMap(std::multimap<std::string, float> &map, std::ifstream &file, const char *del);
+		multimapIterator searchDate(std::string date);
+		bool checkDateFormat(std::string date);
+	private :
+		std::multimap<std::string, float> _rate;
+		std::multimap<std::string, float> _exchange;
+};
 
 #endif

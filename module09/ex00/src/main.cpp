@@ -14,7 +14,13 @@
 
 int main(int argc, char **argv)
 {
-	(void)argc;
-	(void)argv;
+	if (argc != 2)
+	{
+		std::cout << "Error: wrong number of arguments" << std::endl;
+		return (0);
+	}
+	std::string file(argv[1]);
+	BitcoinExchange exchange(file);
+	exchange.displayExchangeRate();
 	return (0);
 }
