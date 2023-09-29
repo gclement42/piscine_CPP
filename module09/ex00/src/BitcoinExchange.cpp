@@ -68,6 +68,7 @@ void BitcoinExchange::createMap(std::multimap<std::string, float> &map, std::ifs
 		index = line.find(del);
 		if (index != std::string::npos)
 		{
+			
 			key = line.substr(0, index);
 			key.erase(std::remove_if(key.begin(), key.end(), ::isspace), key.end());
 			keyVal = std::make_pair(
@@ -76,8 +77,11 @@ void BitcoinExchange::createMap(std::multimap<std::string, float> &map, std::ifs
 			);
 		}
 		else
-			keyVal = std::make_pair(line, -1);
-		map.insert(keyVal);
+			keyVal = std::make_pair(line, 0);
+		if (std::count (line.begin(), line.end(), *del) == 1 || line.empty())
+			map.insert(keyVal);
+		else
+			std::cout << "\"" << line << "\" => Error: wrong data format" << std::endl;
 	}
 }
 
@@ -108,39 +112,11 @@ bool BitcoinExchange::checkDateFormat(std::string date)
 	if (year < 2000 || year > 2022)
 		result = false;
 	if (!result)
+	{
 		std::cout << date << " => wrong date format" << std::endl;
+		return (false);
+	}
 	return (true);
-}
-
-std::multimap<std::string, float>::iterator BitcoinExchange::searchDate(std::string date)
-{
-	multimapIterator    rateIt;
-	std::string         rateDate;
-	size_t              index;
-	int                 day = 1;
-	std::stringstream   ss;
-
-	rateIt = _rate.find(date);
-	if (!checkDateFormat(date))
-	{
-		std::cout << date << " => wrong date format" << std::endl;
-		return (_rate.end());
-	}
-	while (rateIt == _rate.end() && day > 0)
-	{
-		index = date.find_last_of("-0");
-		if (index == std::string::npos)
-			return (_rate.end());
-		day = std::atoi(date.substr(index + 1, 2).c_str());
-		day--;
-		if (day < 10)
-			ss << "0";
-		ss << day;
-		date.replace(index, 2, ss.str());
-		rateIt = _rate.find(date);
-		ss.str("");
-	}
-	return (rateIt);
 }
 
 void BitcoinExchange::displayExchangeRate(void)
@@ -150,8 +126,8 @@ void BitcoinExchange::displayExchangeRate(void)
 
 	for (it = _exchange.begin(); it != _exchange.end(); it++)
 	{
-		rateIt = searchDate((*it).first);
-		if (rateIt == _rate.end())
+		rateIt = _rate.lower_bound((*it).first);
+		if (!checkDateFormat((*it).first))
 			continue ;
 		else if ((*it).second < 0)
 			std::cout << (*it).first << " => Error: Not a positive number" << std::endl;
