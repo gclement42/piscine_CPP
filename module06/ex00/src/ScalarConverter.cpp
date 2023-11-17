@@ -33,19 +33,21 @@ ScalarConverter::ScalarConverter(const ScalarConverter &src)
 
 void ScalarConverter::convert(const std::string &str)
 {
-	double num;
-	char c;
+	double	num;
+	char	c;
 
 	num = std::atof(str.c_str());
 	if (num != 0)
 	{
-		if ((std::count(str.begin(), str.end(), '.') > 1
+		if (str == "nan" || str == "nanf" || str == "inf" 
+			|| str == "inff" || str == "-inf" || str == "-inff")
+			return (ScalarConverter::displayOther(num));
+		else if ((std::count(str.begin(), str.end(), '.') > 1
 			|| std::count(str.begin(), str.end(), 'f') > 1
-			|| std::count(str.begin(), str.end(), '-') > 1)
-			||	(str.find_first_not_of("-+.f0123456789") != std::string::npos
-			&& str != "nan" && str != "nanf" && str != "inf" 
-			&& str != "inff" && str != "-inf" && str != "-inff"))
+			|| std::count(str.begin(), str.end(), '-') > 1) 
+			|| str.find_first_not_of("-+.f0123456789") != std::string::npos) {
 			return (ScalarConverter::ifImpossible());
+		}
 		ScalarConverter::convertToChar(num);
 		ScalarConverter::convertToInt(num);
 		ScalarConverter::convertToFloat(num);
@@ -61,6 +63,16 @@ void ScalarConverter::convert(const std::string &str)
 		ScalarConverter::convertToFloat(static_cast<double>(str[0]));
 		ScalarConverter::convertToDouble(static_cast<double>(str[0]));
 	}
+}
+
+void ScalarConverter::displayOther(const double num)
+{
+	float	resF = static_cast<float>(num);
+
+	std::cout << "char: Non displayble" << std::endl;
+	std::cout << "int: Impossible" << std::endl;
+	std::cout << "float: " << resF << "f" << std::endl;
+	std::cout << "double: " << num << std::endl;
 }
 
 void ScalarConverter::convertToInt(const double num)
@@ -107,7 +119,7 @@ void ScalarConverter::convertToFloat(const double nb)
 
 	res = static_cast<float>(nb);
 	std::cout << "float: ";
-	if (res >= FLT_MAX || res <= -FLT_MAX)
+	if ((res >= FLT_MAX || res <= -FLT_MAX))
 	{
 		std::cout << "impossible" << std::endl;
 		return ;

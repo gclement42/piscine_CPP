@@ -22,6 +22,7 @@ class ScalarConverter
 		static void convertToChar(const double nb);
 		static void convertToDouble(const double nb);
 		static void convertToFloat(const double nb);
+		static void displayOther(const double num);
 	public:
 		ScalarConverter();
 		ScalarConverter(const ScalarConverter &src);
