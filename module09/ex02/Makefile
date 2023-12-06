@@ -8,7 +8,7 @@ HEADER_DIR				= header/
 HEADER_FILES			= PmergeMe.hpp
 	
 DIR						=	src/
-SRC						=	main.cpp  PmergeMe.cpp
+SRC						=	main.cpp PmergeMe.cpp
 
 OBJECTS					= $(SRC:%.cpp=$(BUILD_DIR)%.o)
 
