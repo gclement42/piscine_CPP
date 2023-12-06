@@ -13,7 +13,7 @@ SRC						=	main.cpp
 OBJECTS					= $(SRC:%.cpp=$(BUILD_DIR)%.o)
 
 GCC						= c++
-CFLAGS					= -Wall -Werror -Wextra -Wshadow -std=c++98
+CFLAGS					= -Wall -Werror -Wextra -std=c++98
 SANITIZE				= $(CFLAGS) -g3 -fsanitize=address
 
 RM 						= rm -rf
@@ -21,7 +21,7 @@ CLEAR					= clear
 
 $(BUILD_DIR)%.o: 		$(DIR)%.cpp $(HEADER_DIR)* Makefile
 						@mkdir -p $(@D)
-						$(GCC) $(CFLAGS) -I$(HEADER_DIR) -I/usr/include -O3 -c $< -o $@
+						$(GCC) $(CFLAGS) -I$(HEADER_DIR) -I/usr/include -c $< -o $@
 
 
 all: 					clear mkbuild $(HEADER_DIR) $(NAME) 

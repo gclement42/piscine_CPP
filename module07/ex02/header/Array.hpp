@@ -13,8 +13,9 @@ class Array
 		Array(void);
 		Array(size_t n);
 		Array(Array &src);
+		~Array(void);
 		Array& operator=(Array &src);
-		T& operator[](size_t index);
+		T& operator[](size_t index) const;
 		size_t size(void) const;
 };
 
@@ -37,10 +38,18 @@ Array<T>::Array(Array &src)
 }
 
 template <typename T>
+Array<T>::~Array(void)
+{
+	delete [] this->_array;
+}
+
+template <typename T>
 Array<T>& Array<T>::operator=(Array &src)
 {
+	delete [] this->_array;
 	this->_array = new T[src._size];
-	std::copy(src._array, src._array + src._size, this->_array);
+	for (size_t i = 0; i < src._size; i++)
+		this->_array[i] = src[i]; 
 	this->_size = src._size;
 	return (*this);
 }
@@ -52,7 +61,7 @@ size_t Array<T>::size(void) const
 }
 
 template <typename T>
-T& Array<T>::operator[](size_t index)
+T& Array<T>::operator[](size_t index) const
 {
 	if (index >= this->_size)
 		throw std::exception();

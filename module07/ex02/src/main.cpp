@@ -5,6 +5,7 @@
 #define MAX_VAL 10
 int main(int, char**)
 {
+    const Array<int> num(MAX_VAL);
     Array<int> numbers(MAX_VAL);
     int* mirror = new int[MAX_VAL];
     srand(time(NULL));
@@ -49,6 +50,6 @@ int main(int, char**)
     {
         numbers[i] = rand();
     }
-    delete [] mirror;//
+    delete [] mirror;
     return 0;
 }
