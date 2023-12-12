@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 07:32:48 by gclement          #+#    #+#             */
-/*   Updated: 2023/09/27 07:32:49 by gclement         ###   ########.fr       */
+/*   Updated: 2023/12/12 11:03:39 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int main()
 		sp.addNumber(25);
 		sp.addNumber(9);
 		sp.addNumber(15);
+		
 		sp.display();
 		std::cout << sp.longestSpan() << std::endl;
 		std::cout << sp.shortestSpan() << std::endl;

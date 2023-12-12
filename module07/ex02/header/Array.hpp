@@ -2,6 +2,7 @@
 #define ARRAY_HPP
 
 #include <iostream>
+#include <cstring>
 
 template <typename T>
 class Array
@@ -29,12 +30,16 @@ template <typename T>
 Array<T>::Array(size_t n):_size(n)
 {
 	this->_array = new T[n];
+	memset(this->_array, 0, n);
 }
 
 template <typename T>
 Array<T>::Array(Array &src)
 {
-	*this = src;
+	this->_array = new T[src._size];
+	this->_size = src._size;
+	for (size_t i = 0; i < src._size; i++)
+		this->_array[i] = src._array[i];
 }
 
 template <typename T>
@@ -46,6 +51,8 @@ Array<T>::~Array(void)
 template <typename T>
 Array<T>& Array<T>::operator=(Array &src)
 {
+	if (&src == this)
+		return (*this);
 	delete [] this->_array;
 	this->_array = new T[src._size];
 	for (size_t i = 0; i < src._size; i++)

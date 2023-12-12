@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 07:32:50 by gclement          #+#    #+#             */
-/*   Updated: 2023/09/27 07:32:51 by gclement         ###   ########.fr       */
+/*   Updated: 2023/12/12 11:00:33 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ Span &Span::operator=(Span &src)
 {
 	if (this != &src)
 	{
+		this->_vector.resize(src._vector.size());
 		std::copy(src._vector.begin(), src._vector.end(), _vector.begin());
 	}
 	return (*this);
