@@ -22,49 +22,37 @@ RPN &RPN::operator=(const RPN &src)
 
 void RPN::add(void)
 {
-	std::cout << "Add" << std::endl;
 	int x = _stack.top();
 	_stack.pop();
 	int y = _stack.top();
 	_stack.pop();
-	std::cout << "x: " << x << std::endl;
-	std::cout << "y: " << y << std::endl;
 	_stack.push(x + y);
 }
 
 void RPN::sub(void)
 {
-	std::cout << "sub" << std::endl;
 	int x = _stack.top();
 	_stack.pop();
 	int y = _stack.top();
 	_stack.pop();
-	std::cout << "x: " << x << std::endl;
-	std::cout << "y: " << y << std::endl;
 	_stack.push(y - x);
 }
 
 void RPN::mult(void)
 {
-	std::cout << "mult" << std::endl;
 	int x = _stack.top();
 	_stack.pop();
 	int y = _stack.top();
 	_stack.pop();
-	std::cout << "x: " << x << std::endl;
-	std::cout << "y: " << y << std::endl;
 	_stack.push(x * y);
 }
 
 void RPN::div(void)
 {
-	std::cout << "div" << std::endl;
 	int x = _stack.top();
 	_stack.pop();
 	int y = _stack.top();
 	_stack.pop();
-	std::cout << "x: " << x << std::endl;
-	std::cout << "y: " << y << std::endl;
 	_stack.push(y / x);
 }
 
@@ -78,6 +66,10 @@ void RPN::calc()
 	{
 		if (isdigit(token[0]))
 			_stack.push(std::atoi(token.c_str()));
+		else if (_stack.size() == 1) {
+			std::cout << "invalid :(" << std::endl;
+			return ;
+		}
 		else if (token[0] == '+')
 			add();
 		else if (token[0] == '-')
@@ -91,10 +83,12 @@ void RPN::calc()
 			std::cout << "Error: Invalid input" << std::endl;
 			return ;
 		}
-		std::cout << "Stack: " << _stack.top() << std::endl;
-		//std::cout << "stack size:" << _stack.size() << std::endl;
 	}
-	_result = _stack.top();
-	std::cout << _result << std::endl;
+	if (_stack.size() > 1)
+		std::cout << "invalid :(" << std::endl;
+	else {
+		_result = _stack.top();
+		std::cout << _result << std::endl;
+	}
 }
 
