@@ -17,39 +17,53 @@
 # include <algorithm>
 
 template <typename T>
-void    insertionSort(T &container);
+size_t binarySearch(T &container, const int nb) {
+    size_t low = 0;
+    size_t high = container.size();
+
+    while (low < high) {
+        size_t mid = low + (high - low) / 2;
+
+        if (container[mid] < nb) {
+            low = mid + 1;
+        } else {
+            high = mid;
+        }
+    }
+
+    return low;
+}
+
 template <typename T>
-void    mergeSort(T &left, T &right, T &container);
+void   sortContainer(T &container, T &containerB);
 
 template <typename T>
 void   fillContainer(char *argv[], int size, T &container)
 {
-    int i = 1;
-    while (i < size)
-    {
-        container.push_back(atoi(argv[i]));
-        i++;
+    T containerB;
+
+    for(int i = 2; i < size; i += 2) {
+        if (atoi(argv[i]) > atoi(argv[i - 1])) {
+            containerB.push_back(atoi(argv[i]));
+            container.push_back(atoi(argv[i - 1]));
+        }
+        else {
+            containerB.push_back(atoi(argv[i - 1]));
+            container.push_back(atoi(argv[i]));
+        }
+    }
+    if (size % 2 == 0) {
+        containerB.push_back(atoi(argv[size - 1]));
+    }
+    sortContainer(container, containerB);
+    for (size_t i = 0; i < containerB.size(); i++) {
+        size_t index = binarySearch(container, containerB[i]);
+        container.insert(container.begin() + index, containerB[i]);
     }
 }
 
 template <typename T>
-void    dividedContainer(T &container)
-{
-    T left(container.begin(), container.begin() + (container.size() / 2));
-    T right(container.begin() + (container.size() / 2), container.end());
-
-    if (left.size() > 64)
-    {
-        dividedContainer(left);
-        dividedContainer(right);
-    }
-    insertionSort(left);
-    insertionSort(right);
-    mergeSort(left, right, container);
-}
-
-template <typename T>
-void    insertionSort(T &container)
+void   sortContainer(T &container, T &containerB)
 {
     for (size_t i = 1; i < container.size(); i++)
     {
@@ -57,20 +71,21 @@ void    insertionSort(T &container)
         {
             int j = i - 1;
             int nb = container[i];
+            int nbB = containerB[i];
             while (j != 0 && nb < container[j])
                 j--;
             container.erase(container.begin() + i);
-            if (j == 0 && nb < container[j])
+            containerB.erase(containerB.begin() + i);
+            if (j == 0 && nb < container[j]) {
                 container.insert(container.begin(), nb);
-            else
+                containerB.insert(containerB.begin(), nbB);
+            }
+            else {
                 container.insert(container.begin() + j + 1, nb);   
+                containerB.insert(containerB.begin() + j + 1, nbB);
+            }
         }
     }
 }
 
-template <typename T>
-void    mergeSort(T &left, T &right, T &container)
-{
-    std::merge(left.begin(), left.end(), right.begin(), right.end(), container.begin());
-}
 

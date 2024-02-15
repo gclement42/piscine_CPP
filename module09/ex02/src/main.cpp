@@ -58,15 +58,22 @@ int main(int argc, char **argv)
     std::deque<int> deque;
     std::vector<int> vector;
     
-    fillContainer(argv, argc, deque);
-    fillContainer(argv, argc, vector);
     std::cout << "Before: ";
-    displayContainer(deque);
+    for (int i = 1; i < argc; i++)
+    {
+        std::cout << argv[i] << " ";
+        if (i == 10)
+        {
+            std::cout << "...";
+            break ;
+        }
+    }
+    std::cout << std::endl;
     clock_t     startDeque = clock();
-    dividedContainer(deque);
+    fillContainer(argv, argc, deque);
     clock_t     endDeque = clock();
     clock_t     startVector = clock();
-    dividedContainer(vector);
+    fillContainer(argv, argc, vector);
     clock_t     endVector = clock();
     double durationVector = (double)(endVector - startVector) / CLOCKS_PER_SEC;
     double durationDeque = (double)(endDeque - startDeque) / CLOCKS_PER_SEC;
