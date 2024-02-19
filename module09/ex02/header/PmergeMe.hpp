@@ -38,11 +38,15 @@ template <typename T>
 void   sortContainer(T &container, T &containerB);
 
 template <typename T>
-void   fillContainer(char *argv[], int size, T &container)
+void   pMerge(char *argv[], int size, T &container)
 {
     T containerB;
 
     for(int i = 2; i < size; i += 2) {
+        if (atoi(argv[i]) < 0 || atoi(argv[i - 1]) < 0) {
+            std::cerr << "Error: only positive numbers are allowed" << std::endl;
+            return ;
+        }
         if (atoi(argv[i]) > atoi(argv[i - 1])) {
             containerB.push_back(atoi(argv[i]));
             container.push_back(atoi(argv[i - 1]));

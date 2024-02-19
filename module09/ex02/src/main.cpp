@@ -62,7 +62,7 @@ int main(int argc, char **argv)
     for (int i = 1; i < argc; i++)
     {
         std::cout << argv[i] << " ";
-        if (i == 10)
+        if (i > 10)
         {
             std::cout << "...";
             break ;
@@ -70,10 +70,14 @@ int main(int argc, char **argv)
     }
     std::cout << std::endl;
     clock_t     startDeque = clock();
-    fillContainer(argv, argc, deque);
+    pMerge(argv, argc, deque);
+    if (deque.size() == 0)
+        return (0);
     clock_t     endDeque = clock();
     clock_t     startVector = clock();
-    fillContainer(argv, argc, vector);
+    pMerge(argv, argc, vector);
+    if (vector.size() == 0)
+        return (0);
     clock_t     endVector = clock();
     double durationVector = (double)(endVector - startVector) / CLOCKS_PER_SEC;
     double durationDeque = (double)(endDeque - startDeque) / CLOCKS_PER_SEC;
