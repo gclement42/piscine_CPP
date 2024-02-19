@@ -53,7 +53,13 @@ void RPN::div(void)
 	_stack.pop();
 	int y = _stack.top();
 	_stack.pop();
-	_stack.push(y / x);
+	if (x == 0 || y == 0)
+	{
+		std::cout << "Error: Division by zero" << std::endl;
+		_stack.push(0);
+	}
+	else
+		_stack.push(y / x);
 }
 
 void RPN::calc()
@@ -61,11 +67,16 @@ void RPN::calc()
 	std::stringstream ss(_rpn);
 
 	std::string token;
-	std::cout << "RPN: " << _rpn << std::endl;
 	while (std::getline(ss, token, ' '))
 	{
-		if (isdigit(token[0]))
+		if (isdigit(token[0])) {
+
+			if (std::atoi(token.c_str()) > 9) {
+				std::cout << "Error: Number greater than 10" << std::endl;
+				return ;
+			}
 			_stack.push(std::atoi(token.c_str()));
+		}
 		else if (_stack.size() == 1) {
 			std::cout << "invalid :(" << std::endl;
 			return ;
