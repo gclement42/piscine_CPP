@@ -13,7 +13,7 @@ SRC						=	main.cpp RPN.cpp
 OBJECTS					= $(SRC:%.cpp=$(BUILD_DIR)%.o)
 
 GCC						= c++
-CFLAGS					= -Wall -Werror -Wextra -Wshadow -std=c++98
+CFLAGS					= -Wall -Werror -Wextra -std=c++98
 SANITIZE				= $(CFLAGS) -g3 -fsanitize=address
 
 RM 						= rm -rf
