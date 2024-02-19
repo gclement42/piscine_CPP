@@ -121,8 +121,8 @@ bool BitcoinExchange::checkDateFormat(std::string date)
 
 void BitcoinExchange::displayExchangeRate(void)
 {
-	multimapIterator	it;
-	multimapIterator	rateIt;
+	std::multimap<std::string, float>::iterator	it;
+	std::multimap<std::string, float>::iterator	rateIt;
 
 	for (it = _exchange.begin(); it != _exchange.end(); it++)
 	{

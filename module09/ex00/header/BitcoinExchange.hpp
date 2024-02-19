@@ -18,7 +18,6 @@
 
 class BitcoinExchange
 {
-	typedef typename std::multimap<std::string, float>::iterator multimapIterator;
 	public :
 		BitcoinExchange(std::string file);
 		~BitcoinExchange();
@@ -26,7 +25,7 @@ class BitcoinExchange
 		BitcoinExchange &operator=(const BitcoinExchange &src);
 		void displayExchangeRate(void);
 		void createMap(std::multimap<std::string, float> &map, std::ifstream &file, const char *del);
-		multimapIterator searchDate(std::string date);
+		std::multimap<std::string, float>::iterator searchDate(std::string date);
 		bool checkDateFormat(std::string date);
 	private :
 		std::multimap<std::string, float> _rate;
